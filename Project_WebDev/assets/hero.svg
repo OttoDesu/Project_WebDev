@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360" fill="none">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00c2a9"/><stop offset="1" stop-color="#0a1a35"/></linearGradient></defs>
+<rect width="600" height="360" rx="24" fill="#0d1322"/>
+<path d="M40 250 C160 220 220 140 320 150 C440 165 480 70 560 80" stroke="url(#g)" stroke-width="12" fill="none" stroke-linecap="round"/>
+<circle cx="160" cy="140" r="26" fill="#00c2a9"/>
+<circle cx="320" cy="190" r="22" fill="#f4b400"/>
+<text x="40" y="80" fill="#f5f7ff" font-size="42" font-family="Segoe UI" font-weight="700">We Run</text>
+<text x="40" y="120" fill="#9aaccc" font-size="20" font-family="Segoe UI">Find your next race</text>
+</svg>
