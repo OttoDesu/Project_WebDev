@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260" viewBox="0 0 400 260" fill="none">
-<rect width="400" height="260" rx="18" fill="#0b1020"/>
-<rect x="60" y="80" width="280" height="100" rx="16" fill="#12263f"/>
-<text x="80" y="140" fill="#f5f7ff" font-size="48" font-family="Segoe UI" font-weight="700">GO!</text>
-<circle cx="80" cy="200" r="8" fill="#00c2a9"/>
-<circle cx="110" cy="200" r="8" fill="#00c2a9"/>
-<circle cx="140" cy="200" r="8" fill="#00c2a9"/>
-</svg>
