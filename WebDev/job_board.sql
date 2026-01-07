@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2026 at 06:37 PM
+-- Generation Time: Jan 07, 2026 at 09:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,15 +33,42 @@ CREATE TABLE `applications` (
   `job_id` int(11) NOT NULL,
   `cover_letter` text NOT NULL,
   `status` enum('Pending','Accepted','Rejected') NOT NULL DEFAULT 'Pending',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `full_name` varchar(255) DEFAULT NULL,
+  `email` varchar(120) DEFAULT NULL,
+  `phone_number` varchar(50) DEFAULT NULL,
+  `resume` varchar(255) DEFAULT NULL,
+  `applied_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `user_id`, `job_id`, `cover_letter`, `status`, `created_at`) VALUES
-(1, 2, 1, 'I want this job', 'Pending', '2026-01-06 17:26:01');
+INSERT INTO `applications` (`id`, `user_id`, `job_id`, `cover_letter`, `status`, `created_at`, `full_name`, `email`, `phone_number`, `resume`, `applied_at`) VALUES
+(1, 2, 1, 'I want this job', 'Rejected', '2026-01-06 17:26:01', NULL, NULL, NULL, NULL, '2026-01-07 05:52:32'),
+(2, 2, 2, '', 'Pending', '2026-01-07 05:55:39', 'Mashitah', 'mashi@example.com', '019999999', 'uploads/resumes/resume_2_1767765339.pdf', '2026-01-07 05:55:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_messages`
+--
+
+CREATE TABLE `contact_messages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact_messages`
+--
+
+INSERT INTO `contact_messages` (`id`, `name`, `email`, `message`, `created_at`) VALUES
+(1, 'Mashitah', 'mashi@example.com', 'Is it real?', '2026-01-07 07:51:43');
 
 -- --------------------------------------------------------
 
@@ -57,20 +84,23 @@ CREATE TABLE `jobs` (
   `location` varchar(120) DEFAULT NULL,
   `closing_date` date DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `requirements` text DEFAULT NULL,
+  `benefits` text DEFAULT NULL,
+  `company` varchar(150) DEFAULT 'Company'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `title`, `description`, `salary`, `location`, `closing_date`, `created_by`, `created_at`) VALUES
-(1, 'Associate Officer (Card Ops-Application Processing)', 'The candidate should have a Diploma, preferably 1 - 2 years of experience. Fresh graduates are encouraged to apply.', 'RM 3,000 - RM 3,500', 'Kuala Lumpur', '2026-02-28', NULL, '2026-01-06 16:49:43'),
-(2, 'Software Engineer', 'We are looking for a passionate software engineer with experience in Java and React. Minimum 2 years experience required.', 'RM 4,500 - RM 6,000', 'Petaling Jaya', '2026-03-10', NULL, '2026-01-06 16:49:43'),
-(3, 'Marketing Executive', 'Join our marketing team to promote our brand. Strong communication and social media skills are a must.', 'RM 3,000 - RM 4,000', 'Subang Jaya', '2026-03-15', NULL, '2026-01-06 16:49:43'),
-(4, 'HR Specialist', 'Assist with recruitment, employee relations, and payroll management. 2 years of HR experience preferred.', 'RM 4,000 - RM 5,500', 'Kuala Lumpur', '2026-03-20', NULL, '2026-01-06 16:49:43'),
-(5, 'Business Analyst', 'Analyze business needs, define requirements, and deliver effective solutions. Must have strong problem-solving skills.', 'RM 5,000 - RM 6,500', 'Cyberjaya', '2026-03-25', NULL, '2026-01-06 16:49:43'),
-(6, 'Sales Manager', 'Lead the sales team to achieve company sales targets. 3 years of experience in a leadership role required.', 'RM 6,000 - RM 8,000', 'Penang', '2026-04-01', NULL, '2026-01-06 16:49:43');
+INSERT INTO `jobs` (`id`, `title`, `description`, `salary`, `location`, `closing_date`, `created_by`, `created_at`, `requirements`, `benefits`, `company`) VALUES
+(1, 'Associate Officer (Card Ops-Application Processing)', 'The candidate should have a Diploma, preferably 1 - 2 years of experience. Fresh graduates are encouraged to apply.', 'RM 3,000 - RM 3,500', 'Kuala Lumpur', '2026-02-28', NULL, '2026-01-06 16:49:43', 'Diploma Holder\r\n\r\nPreferably 1 - 2 years of relevant experience.\r\n\r\nAble to multi-task and cope with change and diversity in a fast-paced environment\r\n\r\nPossess strong analytical and problem-solving skills, able to think objectively and \'think outside the box\' when analyzing issues\r\n\r\nMeticulous with an eye for details and quality mindset\r\n\r\nStrong cross-functional collaboration and communications skills, driving outcomes through influence and negotiations\r\n\r\nProficient in the use of Microsoft Office, specifically Microsoft Excel, Word & PowerPoint\r\n\r\nTeam player, self-motivated and resourceful', 'AL 15 days\r\nBirthday Leave', 'XYZ Truly Agency'),
+(2, 'Software Engineer', 'We are looking for a passionate software engineer with experience in Java and React. Minimum 2 years experience required.', 'RM 4,500 - RM 6,000', 'Petaling Jaya', '2026-03-10', NULL, '2026-01-06 16:49:43', NULL, NULL, 'Company'),
+(3, 'Marketing Executive', 'Join our marketing team to promote our brand. Strong communication and social media skills are a must.', 'RM 3,000 - RM 4,000', 'Subang Jaya', '2026-03-15', NULL, '2026-01-06 16:49:43', NULL, NULL, 'Company'),
+(4, 'HR Specialist', 'Assist with recruitment, employee relations, and payroll management. 2 years of HR experience preferred.', 'RM 4,000 - RM 5,500', 'Kuala Lumpur', '2026-03-20', NULL, '2026-01-06 16:49:43', NULL, NULL, 'Company'),
+(5, 'Business Analyst', 'Analyze business needs, define requirements, and deliver effective solutions. Must have strong problem-solving skills.', 'RM 5,000 - RM 6,500', 'Cyberjaya', '2026-03-25', NULL, '2026-01-06 16:49:43', NULL, NULL, 'Company'),
+(6, 'Sales Manager', 'Lead the sales team to achieve company sales targets. 3 years of experience in a leadership role required.', 'RM 6,000 - RM 8,000', 'Penang', '2026-04-01', NULL, '2026-01-06 16:49:43', NULL, NULL, 'Company');
 
 -- --------------------------------------------------------
 
@@ -108,6 +138,12 @@ ALTER TABLE `applications`
   ADD KEY `job_id` (`job_id`);
 
 --
+-- Indexes for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -129,6 +165,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
